@@ -37,7 +37,7 @@ def get_response(user_query, chat_history):
     db=SQLDatabase.from_uri(db_uri)
     
 
-    sql_chain_template = """Based on the table schema below, write a SQL query that would answer the user's question:
+    sql_chain_template = """Based on the table schema and chat history below, write a SQL query that would answer the user's question:
     {schema}
 
     Chat History: {chat_history}
@@ -45,7 +45,7 @@ def get_response(user_query, chat_history):
     SQL Query:"""
     prompt = ChatPromptTemplate.from_template(sql_chain_template)
 
-    full_chain_template = """Based on the table schema below, question, sql query, and sql response, write a natural language response:
+    full_chain_template = """Based on the table schema, question, sql query, chat history and sql response below, write a natural language response:
     {schema}
 
     Chat History: {chat_history}
